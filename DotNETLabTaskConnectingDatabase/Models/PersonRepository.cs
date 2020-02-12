@@ -61,9 +61,15 @@ namespace DotNETLabTaskConnectingDatabase.Models
             //return personList;
             return p;
         }
-        public int Update(Person per)
+        public int Update(Person p)
         {
-            string sql = "UPDATE Persons SET name='" + per.Name + "', email='" + per.Email + "' WHERE id = " + per.ID + ";";
+            string sql = "UPDATE Persons SET name='" + p.Name + "', email='" + p.Email + "' WHERE id = " + p.ID + ";";
+            return data.ExecuteQuery(sql);
+        }
+
+        public int InsertData(Person p)
+        {
+            string sql = "INSERT INTO Persons (name, email) values ('"+p.Name+"', '"+p.Email+"');";
             return data.ExecuteQuery(sql);
         }
     }

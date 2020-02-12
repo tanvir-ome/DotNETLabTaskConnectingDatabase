@@ -39,5 +39,12 @@ namespace DotNETLabTaskConnectingDatabase.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Create(Person p)
+        {
+            repo.InsertData(p);
+            return RedirectToAction("Index");
+        }
     }
 }
