@@ -46,5 +46,12 @@ namespace DotNETLabTaskConnectingDatabase.Controllers
             repo.InsertData(p);
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult Delete(Person p)
+        {
+            repo.DeleteData(p);
+            return RedirectToAction("Index");
+        }
     }
 }

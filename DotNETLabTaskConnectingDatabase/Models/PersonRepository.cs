@@ -72,5 +72,11 @@ namespace DotNETLabTaskConnectingDatabase.Models
             string sql = "INSERT INTO Persons (name, email) values ('"+p.Name+"', '"+p.Email+"');";
             return data.ExecuteQuery(sql);
         }
+
+        public int DeleteData(Person p)
+        {
+            string sql = "DELETE FROM Persons WHERE id = "+p.ID+";";
+            return data.ExecuteQuery(sql);
+        }
     }
 }
