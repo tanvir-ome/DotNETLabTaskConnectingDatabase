@@ -22,6 +22,7 @@ namespace DotNETLabTaskConnectingDatabase.Controllers
         {
             return View(repo.GetDetails(p.ID));
         }
+
         [HttpGet]
         public ActionResult Edit(int id)
         {
