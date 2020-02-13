@@ -69,13 +69,24 @@ namespace DotNETLabTaskConnectingDatabase.Models
 
         public int InsertData(Person p)
         {
+            int id=0;
             string sql = "INSERT INTO Persons (name, email) values ('"+p.Name+"', '"+p.Email+"');";
-            return data.ExecuteQuery(sql);
+            data.ExecuteQuery(sql);
+            
+            sql = "SELECT id FROM Persons WHERE email = '"+p.Email+"';";
+
+            SqlDataReader reader = data.GetData(sql);
+
+            if (reader.Read())
+            {
+                id = Convert.ToInt32(reader["id"]);
+            }
+            return id;
         }
 
-        public int DeleteData(Person p)
+        public int DeleteData(int id)
         {
-            string sql = "DELETE FROM Persons WHERE id = "+p.ID+";";
+            string sql = "DELETE FROM Persons WHERE id = "+id+";";
             return data.ExecuteQuery(sql);
         }
     }

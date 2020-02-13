@@ -43,15 +43,21 @@ namespace DotNETLabTaskConnectingDatabase.Controllers
         [HttpPost]
         public ActionResult Create(Person p)
         {
-            repo.InsertData(p);
-            return RedirectToAction("Index");
+            int id = repo.InsertData(p);
+            return RedirectToAction("Details", new { id = id });
         }
 
         [HttpGet]
-        public ActionResult Delete(Person p)
+        public ActionResult Delete(int id)
         {
-            repo.DeleteData(p);
-            return RedirectToAction("Index");
+            return View(repo.GetDetails(id));
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteUser(int id)
+        {
+          repo.DeleteData(id);
+          return RedirectToAction("Index");
         }
     }
 }
